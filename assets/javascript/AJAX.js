@@ -12,22 +12,35 @@ $(document).ready(function () {
         // loop through the array
         for (var i = 0; i < shows.length; i++) {
             //add a button to the buttonDiv of array at index
-            var button = $('<button>'+shows[i]+'</button>')
+            var button = $('<button>' + shows[i] + '</button>')
             $('#buttonDiv').append(button)
             // give the button an attribute of search of item at index
-            button.addClass('button')
-            button.attr('showname',shows[i])
+            button.addClass('show')
+            button.attr('showname', shows[i])
         }
     }
 
     makeButton();
     //function of on click for search-button
+    $('.search-button').click(function (event) {
+        event.preventDefault();
+        //captures the text in the text input box
+        var addedShow= $('#show').val().trim();
+        //pushes that text to the array
+        shows.push(addedShow);
+        //runs the button making function
+        makeButton();
+    })
 
-    //captures the text in the text input box
+    $(document).on('click', '.show', gifGet)
 
-    //pushes that text to the array
+    function gifGet() {
+       // $.ajax({url:'',
+    //method:'GET'}).then(function(show){
 
-    //runs the button making function
+    //})
+    console.log($(this).attr('showname'))
+    }
 
     //AJAX call using made buttons on click class button and use the datasearch attribute for the button
 
