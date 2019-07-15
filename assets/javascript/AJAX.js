@@ -16,6 +16,7 @@ $(document).ready(function () {
             $('#buttonDiv').append(button)
             // give the button an attribute of search of item at index
             button.addClass('button')
+            button.attr('showname',shows[i])
         }
     }
 
