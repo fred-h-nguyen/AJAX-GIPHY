@@ -16,7 +16,9 @@ html, body{
 #gifDiv{
 width: 66%;
 height: 100 px;
-background-color: blue;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
 }
 
 #searchDiv{
