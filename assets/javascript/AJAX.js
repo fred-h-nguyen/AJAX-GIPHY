@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // make an array of tv shows
 
-    var shows = ['Dr. Who', 'Stranger Things', 'Sherlock', 'The Flash', 'Arrow', 'Friends', 'Archer', "That 70's Show"]
+    var shows = ['Community', 'Stranger Things', 'Sherlock', 'The Office', 'Friends', 'Gotham', 'Parks and Rec']
 
     //function to make buttons
     function makeButton() {
@@ -49,7 +49,7 @@ $(document).ready(function () {
                 rating.text(show.data[i].rating);
                 rating.appendTo(newDiv);
 //
-                gif.attr('src',show.data[i].images.original.url);
+                gif.attr('src',show.data[i].images.original_still.url);
                 gif.addClass('gif');
                 gif.appendTo(newDiv);
 //
