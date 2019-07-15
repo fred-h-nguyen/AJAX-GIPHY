@@ -37,44 +37,42 @@ $(document).ready(function () {
     function gifGet() {
         var getShow = $(this).attr('showname')
         $.ajax({
-            url: 'https://api.giphy.com/v1/gifs/search?api_key=4EtyCi9f6VQBTqPOmyHaKwV3iYLWUFvl&q='+getShow+'&limit=10&lang=en',
+            url: 'https://api.giphy.com/v1/gifs/search?api_key=4EtyCi9f6VQBTqPOmyHaKwV3iYLWUFvl&q=' + getShow + '&limit=10&lang=en',
             method: 'GET'
         }).then(function (show) {
-            for (var i=0; i<show.data.length; i++){
+            for (var i = 0; i < show.data.length; i++) {
                 //console.log(show.data[i])
                 var newDiv = $('<div>')
                 var rating = $('<h2>')
                 var gif = $('<img>')
-//
+                var pause = '';
+                var play = '';
+                //
                 rating.text(show.data[i].rating);
                 rating.appendTo(newDiv);
-//
-                gif.attr('src',show.data[i].images.original_still.url);
+                //
+                pause = show.data[i].images.original_still.url
+                play = show.data[i].images.original.url
+                gif.attr('src', pause);
                 gif.addClass('gif');
-                gif.attr('isplaying','false')
+                gif.attr('paused', pause)
+                gif.attr('play', play)
                 gif.appendTo(newDiv);
-//
+                //
                 $('#gifDiv').prepend(newDiv);
 
             }
-            
+
         })
     }
 
-    $(document).on('click','.gif',playGif)
+    $(document).on('click', '.gif', playGif)
 
-    function playGif(){
-        var isPlaying = $(this).attr('isplaying')
-        var src = $(this).attr('src')
-        console.log(src);
-        if (isPlaying === 'false'){ 
-            src = src.replace(/_s.gif/gi,'.gif');
-            $(this).attr('src',src);
-            $(this).attr('isplaying','true')
-        }else{
-            src = src.replace(/.gif/gi,'_s.gif')
-            $(this).attr('src',src);
-            $(this).attr('isplaying','false')
+    function playGif() {
+        if ($(this).attr('paused') === $(this).attr('src')) {
+            $(this).attr('src', $(this).attr('play'));
+        } else if ($(this).attr('play') === $(this).attr('src')){
+            $(this).attr('src', $(this).attr('paused'));
         }
     }
 
