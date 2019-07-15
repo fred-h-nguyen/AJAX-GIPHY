@@ -41,7 +41,7 @@ $(document).ready(function () {
             method: 'GET'
         }).then(function (show) {
             for (var i=0; i<show.data.length; i++){
-                console.log(show.data[i])
+                //console.log(show.data[i])
                 var newDiv = $('<div>')
                 var rating = $('<h2>')
                 var gif = $('<img>')
@@ -51,6 +51,7 @@ $(document).ready(function () {
 //
                 gif.attr('src',show.data[i].images.original_still.url);
                 gif.addClass('gif');
+                gif.attr('isplaying','false')
                 gif.appendTo(newDiv);
 //
                 $('#gifDiv').prepend(newDiv);
@@ -58,6 +59,23 @@ $(document).ready(function () {
             }
             
         })
+    }
+
+    $(document).on('click','.gif',playGif)
+
+    function playGif(){
+        var isPlaying = $(this).attr('isplaying')
+        var src = $(this).attr('src')
+        console.log(src);
+        if (isPlaying === 'false'){ 
+            src = src.replace(/_s.gif/gi,'.gif');
+            $(this).attr('src',src);
+            $(this).attr('isplaying','true')
+        }else{
+            src = src.replace(/.gif/gi,'_s.gif')
+            $(this).attr('src',src);
+            $(this).attr('isplaying','false')
+        }
     }
 
     //AJAX call using made buttons on click class button and use the datasearch attribute for the button
