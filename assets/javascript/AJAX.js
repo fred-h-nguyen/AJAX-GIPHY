@@ -25,7 +25,7 @@ $(document).ready(function () {
     $('.search-button').click(function (event) {
         event.preventDefault();
         //captures the text in the text input box
-        var addedShow= $('#show').val().trim();
+        var addedShow = $('#show').val().trim();
         //pushes that text to the array
         shows.push(addedShow);
         //runs the button making function
@@ -35,11 +35,13 @@ $(document).ready(function () {
     $(document).on('click', '.show', gifGet)
 
     function gifGet() {
-       // $.ajax({url:'',
-    //method:'GET'}).then(function(show){
-
-    //})
-    console.log($(this).attr('showname'))
+        var getShow = $(this).attr('showname')
+        $.ajax({
+            url: 'https://api.giphy.com/v1/gifs/search?api_key=4EtyCi9f6VQBTqPOmyHaKwV3iYLWUFvl&q='+getShow+'&limit=10&lang=en',
+            method: 'GET'
+        }).then(function (show) {
+            console.log(show);
+        })
     }
 
     //AJAX call using made buttons on click class button and use the datasearch attribute for the button
