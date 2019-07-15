@@ -40,7 +40,23 @@ $(document).ready(function () {
             url: 'https://api.giphy.com/v1/gifs/search?api_key=4EtyCi9f6VQBTqPOmyHaKwV3iYLWUFvl&q='+getShow+'&limit=10&lang=en',
             method: 'GET'
         }).then(function (show) {
-            console.log(show);
+            for (var i=0; i<show.data.length; i++){
+                console.log(show.data[i])
+                var newDiv = $('<div>')
+                var rating = $('<h2>')
+                var gif = $('<img>')
+//
+                rating.text(show.data[i].rating);
+                rating.appendTo(newDiv);
+//
+                gif.attr('src',show.data[i].images.original.url);
+                gif.addClass('gif');
+                gif.appendTo(newDiv);
+//
+                $('#gifDiv').prepend(newDiv);
+
+            }
+            
         })
     }
 
