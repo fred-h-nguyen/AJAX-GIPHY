@@ -59,6 +59,7 @@ $(document).ready(function () {
                 gif.attr('play', play)
                 gif.appendTo(newDiv);
                 //
+                newDiv.addClass('gifBox')
                 $('#gifDiv').prepend(newDiv);
 
             }
