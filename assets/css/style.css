@@ -3,7 +3,8 @@ html, body{
 }
 
 body{
-    background-image: url(../images/glitch-2717630_1920.jpg)
+    background-image: url(../images/glitch-2717630_1920.jpg);
+    margin-left: 15px;
 }
 
 .flex-container{
@@ -13,6 +14,7 @@ body{
 
 #buttonDiv{
     width: 100%;
+    margin:15px;
 }
 
 button {
