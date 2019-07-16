@@ -2,30 +2,65 @@ html, body{
     width: 100%
 }
 
+body{
+    background-image: url(../images/glitch-2717630_1920.jpg)
+}
+
 .flex-container{
     display: flex;
     width: 100%;
 }
 
 #buttonDiv{
-    background-color: red;
     width: 100%;
-    height: 100px;
+}
+
+button {
+    font-size: 18px;
+    margin: 10px;
+    background-color: rgb(217, 0, 255);
+    border: white 1px solid;
 }
 
 #gifDiv{
 width: 66%;
-height: 100 px;
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
 }
 #gifDiv h2{
     font-size: 24px;
+    color:white;
+    margin-bottom: 5px;
+}
+
+.gifBox{
+    margin: 5px;
+}
+
+#gifDiv img{
+    border: 2px white solid;
 }
 
 #searchDiv{
-height: 100px;
 width: 34%;
-background-color: gray;
+}
+
+#searchDiv label{
+font-size: 24px;
+color: white;
+margin: 5px;
+}
+
+#searchDiv #show{
+    margin: 5px;
+    width: 90%;
+    font-size: 16px;
+}
+
+#searchDiv .search-button{
+    font-size: 18px;
+    margin: 10px;
+    background-color: rgb(217, 0, 255);
+    border: white 1px solid;
 }
