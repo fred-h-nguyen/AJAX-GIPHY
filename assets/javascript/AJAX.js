@@ -40,6 +40,7 @@ $(document).ready(function () {
             url: 'https://api.giphy.com/v1/gifs/search?api_key=4EtyCi9f6VQBTqPOmyHaKwV3iYLWUFvl&q=' + getShow + '&limit=10&lang=en',
             method: 'GET'
         }).then(function (show) {
+            console.log(show.data[0])
             for (var i = 0; i < show.data.length; i++) {
                 //console.log(show.data[i])
                 var newDiv = $('<div>')
@@ -48,11 +49,11 @@ $(document).ready(function () {
                 var pause = '';
                 var play = '';
                 //
-                rating.text(show.data[i].rating);
+                rating.text('Rating: '+ show.data[i].rating);
                 rating.appendTo(newDiv);
                 //
-                pause = show.data[i].images.original_still.url
-                play = show.data[i].images.original.url
+                pause = show.data[i].images.fixed_height_still.url
+                play = show.data[i].images.fixed_height.url
                 gif.attr('src', pause);
                 gif.addClass('gif');
                 gif.attr('paused', pause)
