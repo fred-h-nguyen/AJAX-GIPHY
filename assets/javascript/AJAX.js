@@ -15,8 +15,10 @@ $(document).ready(function () {
             var button = $('<button>' + shows[i] + '</button>')
             $('#buttonDiv').append(button)
             // give the button an attribute of search of item at index
-            button.addClass('show')
-            button.attr('showname', shows[i])
+            button.addClass('show');
+            button.attr('showname', shows[i]);
+            button.attr('click', 0)
+            button.attr('id','show-'+i)
         }
     }
 
@@ -35,12 +37,17 @@ $(document).ready(function () {
     $(document).on('click', '.show', gifGet)
 
     function gifGet() {
-        var getShow = $(this).attr('showname')
+        var getShow = $(this).attr('showname');
+        var clickCount = $(this).attr('click');
+        var thisId = $(this).attr('id')
+        var offset = 0
+        console.log(thisId)
+        clickCount = parseInt(clickCount)
+        offset = clickCount * 10
         $.ajax({
-            url: 'https://api.giphy.com/v1/gifs/search?api_key=4EtyCi9f6VQBTqPOmyHaKwV3iYLWUFvl&q=' + getShow + '&limit=10&lang=en',
+            url: 'https://api.giphy.com/v1/gifs/search?api_key=4EtyCi9f6VQBTqPOmyHaKwV3iYLWUFvl&q=' + getShow + '&limit=10&lang=en'+'&offset='+offset,
             method: 'GET'
         }).then(function (show) {
-            console.log(show.data[0])
             for (var i = 0; i < show.data.length; i++) {
                 //console.log(show.data[i])
                 var newDiv = $('<div>')
@@ -49,7 +56,7 @@ $(document).ready(function () {
                 var pause = '';
                 var play = '';
                 //
-                rating.text('Rating: '+ show.data[i].rating);
+                rating.text('Rating: ' + show.data[i].rating);
                 rating.appendTo(newDiv);
                 //
                 pause = show.data[i].images.fixed_height_still.url
@@ -62,10 +69,13 @@ $(document).ready(function () {
                 //
                 newDiv.addClass('gifBox')
                 $('#gifDiv').prepend(newDiv);
-
             }
-
+            clickCount++;
+            console.log(clickCount)
+            $('#'+thisId).attr('click',clickCount)
+            console.log($(this).attr('click'))
         })
+
     }
 
     $(document).on('click', '.gif', playGif)
@@ -73,15 +83,8 @@ $(document).ready(function () {
     function playGif() {
         if ($(this).attr('paused') === $(this).attr('src')) {
             $(this).attr('src', $(this).attr('play'));
-        } else if ($(this).attr('play') === $(this).attr('src')){
+        } else if ($(this).attr('play') === $(this).attr('src')) {
             $(this).attr('src', $(this).attr('paused'));
         }
     }
-
-    //AJAX call using made buttons on click class button and use the datasearch attribute for the button
-
-    //get the gif rating and append to a new div
-    // get the gif information and append to the same div
-
-    //append the new div to the gifDiv 
 })
